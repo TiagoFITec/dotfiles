@@ -26,7 +26,7 @@ install_dev_tools() {
 
 install_utilities() {
     # Install utility applications
-    sudo apt-get install -y htop
+    sudo apt-get install -y btop
     sudo apt-get install -y neofetch
     
     return 0
