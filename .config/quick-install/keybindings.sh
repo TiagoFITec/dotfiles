@@ -8,8 +8,8 @@ set_workspace_count() {
     gsettings set org.gnome.mutter dynamic-workspaces false
     
     # Ensure GNOME Shell is being used
-    if [[ $(gsettings get org.gnome.desktop.wm.preferences num-workspaces) -lt 8 ]]; then
-        gsettings set org.gnome.desktop.wm.preferences num-workspaces 8
+    if [[ $(gsettings get org.gnome.desktop.wm.preferences num-workspaces) -lt 12 ]]; then
+        gsettings set org.gnome.desktop.wm.preferences num-workspaces 12
     fi
     
     return 0
@@ -20,6 +20,7 @@ configure_switch_keybindings() {
     declare -A SWITCH_KEYS=(
         [q]=1 [w]=2 [e]=3 [r]=4
         [a]=5 [s]=6 [d]=7 [f]=8
+        [z]=9 [x]=10 [c]=11 [v]=12
     )
     
     # Set keybindings for switching workspaces
@@ -48,6 +49,7 @@ configure_move_keybindings() {
     declare -A MOVE_KEYS=(
         [q]=1 [w]=2 [e]=3 [r]=4
         [a]=5 [s]=6 [d]=7 [f]=8
+        [z]=9 [x]=10 [c]=11 [v]=12
     )
     
     # Set keybindings for moving windows to workspaces
