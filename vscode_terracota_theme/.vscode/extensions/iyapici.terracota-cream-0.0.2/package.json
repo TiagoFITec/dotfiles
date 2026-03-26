@@ -1,0 +1,53 @@
+{
+	"name": "terracota-cream",
+	"displayName": "Terracotta Cream",
+	"description": "Claude-inspired VS Code color theme.",
+	"version": "0.0.2",
+	"publisher": "iyapici",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/IlhanYapici/terracotta-cream"
+	},
+	"homepage": "https://github.com/IlhanYapici/terracotta-cream",
+	"icon": "assets/logo.png",
+	"engines": {
+		"vscode": "^1.43.0"
+	},
+	"categories": [
+		"Themes"
+	],
+	"keywords": [
+		"theme",
+		"terracotta",
+		"cream",
+		"warm",
+		"dark theme",
+		"light theme",
+		"earthy",
+		"brown",
+		"natural",
+		"cozy",
+		"minimal",
+		"comfortable"
+	],
+	"contributes": {
+		"themes": [
+			{
+				"label": "Terracotta Cream Dark",
+				"uiTheme": "vs-dark",
+				"path": "./themes/terracotta-cream-dark.json"
+			},
+			{
+				"label": "Terracotta Cream Light",
+				"uiTheme": "vs",
+				"path": "./themes/terracotta-cream-light.json"
+			}
+		]
+	},
+	"__metadata": {
+		"installedTimestamp": 1772715428190,
+		"targetPlatform": "undefined",
+		"size": 4388456
+	}
+}
