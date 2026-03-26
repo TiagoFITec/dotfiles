@@ -1,0 +1,21 @@
+[Unit]
+Description=MiniDLNA media server
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=exec
+User=minidlna
+Group=minidlna
+ExecStart=/usr/bin/minidlnad -S -f /etc/minidlna.conf
+ExecReload=/bin/kill -HUP $MAINPID
+RuntimeDirectory=minidlna
+StateDirectory=minidlna
+CacheDirectory=minidlna
+LogsDirectory=minidlna
+NoNewPrivileges=yes
+UMask=0027
+ReadOnlyPaths=/home/tiago/Videos
+
+[Install]
+WantedBy=multi-user.target
