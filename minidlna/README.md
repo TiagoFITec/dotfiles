@@ -1,6 +1,6 @@
 # MiniDLNA
 
-Saved MiniDLNA setup for restoring the server on Debian with GNU Stow.
+Saved MiniDLNA setup for restoring the server on Debian or Fedora.
 
 ## What is stored here
 
@@ -8,6 +8,7 @@ Saved MiniDLNA setup for restoring the server on Debian with GNU Stow.
 - `etc/systemd/system/minidlna.service`: custom systemd unit
 - `usr/lib/sysusers.d/minidlna.conf`: declarative `minidlna` user/group creation
 - `setup-debian.sh`: restore helper for Debian
+- `setup-fedora.sh`: restore helper for Fedora
 
 ## Why the user setup matters
 
@@ -34,10 +35,28 @@ The script will:
 - restore ACLs so the service can read the video library
 - enable and start `minidlna.service`
 
+## Restore on Fedora
+
+From the dotfiles repository root:
+
+1. run `chmod +x minidlna/setup-fedora.sh`
+2. run `./minidlna/setup-fedora.sh`
+
+The script will:
+
+- install `minidlna` and `acl` with `dnf`
+- back up Fedora's packaged `minidlna` files before replacing them
+- install your config, service, and `sysusers.d` files directly into `/etc` and `/usr/lib`
+- create the `minidlna` user and group
+- restore ACLs so the service can read the video library
+- enable and start `minidlna.service`
+
+Fedora note: this does not use GNU Stow. Stowing system files from a checkout under `/home` leaves them with home-directory SELinux labels, which prevents `systemd` from loading the custom unit.
+
 ## Things to review after reinstalling
 
 - `network_interface=enp3s0` in `etc/minidlna.conf`
 - `media_dir=V,/home/tiago/Videos` in `etc/minidlna.conf`
 - `friendly_name=Giuseppe DLNA Server` in `etc/minidlna.conf`
 
-If Debian gives your NIC a different name, update `network_interface` before running the service.
+If your distro gives your NIC a different name, update `network_interface` before running the service.
