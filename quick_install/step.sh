@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source "/home/tiago/.config/quick-install/print-with-color.sh"
+source "/home/tiago/.dotfiles/quick_install/print-with-color.sh"
 
 step(){
     if [ $# -lt 2 ]; then

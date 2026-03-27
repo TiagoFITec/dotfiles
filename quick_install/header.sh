@@ -1,5 +1,5 @@
 #!/bin/bash
-source "/home/tiago/.config/quick-install/print-with-color.sh"
+source "/home/tiago/.dotfiles/quick_install/print-with-color.sh"
 
 show_header(){
 printf "\n"

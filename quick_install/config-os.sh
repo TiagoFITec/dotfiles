@@ -4,7 +4,7 @@
 # Created: May 11, 2025
 # Author: Tiago
 
-source "/home/tiago/.config/quick-install/print-with-color.sh"
+source "/home/tiago/.dotfiles/quick_install/print-with-color.sh"
 
 configure_dark_theme() {
     # Check if GNOME is the current desktop environment

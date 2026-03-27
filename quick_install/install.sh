@@ -1,11 +1,11 @@
 #!/bin/bash
 
-source "/home/tiago/.config/quick-install/step.sh"
-source "/home/tiago/.config/quick-install/header.sh"
-source "/home/tiago/.config/quick-install/config-log.sh"
-source "/home/tiago/.config/quick-install/keybindings.sh"
-source "/home/tiago/.config/quick-install/config-os.sh"
-# source "/home/tiago/.config/quick-install/core-apps.sh"
+source "/home/tiago/.dotfiles/quick_install/step.sh"
+source "/home/tiago/.dotfiles/quick_install/header.sh"
+source "/home/tiago/.dotfiles/quick_install/config-log.sh"
+source "/home/tiago/.dotfiles/quick_install/keybindings.sh"
+source "/home/tiago/.dotfiles/quick_install/config-os.sh"
+# source "/home/tiago/.dotfiles/quick_install/core-apps.sh"
 
 # Main installation script
 

@@ -3,7 +3,7 @@
 
 
 config_log(){
-    local LOG_DIR="/home/tiago/.config/quick-install"
+    local LOG_DIR="/home/tiago/.dotfiles/quick_install"
     local ADMIN_USER="tiago"
     LOG="$LOG_DIR/$1"
     if [ ! -d "$LOG_DIR" ]; then

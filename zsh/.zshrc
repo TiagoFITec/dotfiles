@@ -62,22 +62,13 @@ fi
 
 export PATH="$PATH:/home/tiago/.local/bin/"
 
-
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 if [[ "$TERM_PROGRAM" == "vscode" ]]; then
     source "$(code --locate-shell-integration-path zsh)"
-    source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 else
     eval "$(oh-my-posh init zsh)"
-    source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv zsh)"
 
 
-# opencode
-export PATH=/home/tiago/.opencode/bin:$PATH
 
-. "$HOME/.local/bin/env"
-export PATH="$HOME/.npm-global/bin:$PATH"
 
-# OpenClaw Completion
-source "/home/tiago/.openclaw/completions/openclaw.zsh"
