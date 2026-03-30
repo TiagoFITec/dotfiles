@@ -1,8 +1,11 @@
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
-HISTSIZE=1000
-SAVEHIST=1000
+HISTSIZE=10000
+SAVEHIST=10000
 setopt autocd nomatch
+setopt HIST_IGNORE_DUPS       # don't save duplicate consecutive commands
+setopt HIST_IGNORE_SPACE      # commands starting with a space are not saved
+setopt SHARE_HISTORY          # share history across terminal sessions
 unsetopt beep extendedglob notify
 bindkey -e
 # End of lines configured by zsh-newuser-install
@@ -13,10 +16,13 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
-# create a zkbd compatible hash;
-# to add other keys to this hash, see: man 5 terminfo
-typeset -g -A key
 
+# Completion improvements
+zstyle ':completion:*' menu select          # arrow-key driven menu completion
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' # case-insensitive completion
+
+# Keybindings
+typeset -g -A key
 key[Home]="${terminfo[khome]}"
 key[End]="${terminfo[kend]}"
 key[Insert]="${terminfo[kich1]}"
@@ -31,9 +37,6 @@ key[PageDown]="${terminfo[knp]}"
 key[Shift-Tab]="${terminfo[kcbt]}"
 key[Control-Left]="${terminfo[kLFT5]}"
 key[Control-Right]="${terminfo[kRIT5]}"
-
-
-# setup key accordingly
 [[ -n "${key[Home]}"      ]] && bindkey -- "${key[Home]}"       beginning-of-line
 [[ -n "${key[End]}"       ]] && bindkey -- "${key[End]}"        end-of-line
 [[ -n "${key[Insert]}"    ]] && bindkey -- "${key[Insert]}"     overwrite-mode
@@ -49,8 +52,13 @@ key[Control-Right]="${terminfo[kRIT5]}"
 [[ -n "${key[Control-Left]}"  ]] && bindkey -- "${key[Control-Left]}"  backward-word
 [[ -n "${key[Control-Right]}" ]] && bindkey -- "${key[Control-Right]}" forward-word
 
-# Finally, make sure the terminal is in application mode, when zle is
-# active. Only then are the values from $terminfo valid.
+
+# Path
+path+=("$HOME/.local/bin")   # idiomatic zsh way; avoids duplicates with typeset -U
+typeset -U path              # silently remove any duplicate entries in $PATH
+
+
+# Plugins and shell integration
 if (( ${+terminfo[smkx]} && ${+terminfo[rmkx]} )); then
 	autoload -Uz add-zle-hook-widget
 	function zle_application_mode_start { echoti smkx }
@@ -58,13 +66,15 @@ if (( ${+terminfo[smkx]} && ${+terminfo[rmkx]} )); then
 	add-zle-hook-widget -Uz zle-line-init zle_application_mode_start
 	add-zle-hook-widget -Uz zle-line-finish zle_application_mode_stop
 fi
-
-
-export PATH="$PATH:/home/tiago/.local/bin/"
-
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 if [[ "$TERM_PROGRAM" == "vscode" ]]; then
     source "$(code --locate-shell-integration-path zsh)"
 else
     eval "$(oh-my-posh init zsh)"
 fi
+source /usr/share/doc/fzf/examples/key-bindings.zsh
+# Override fzf default bindings
+bindkey -r '^R'
+bindkey -r '^T'
+bindkey '\er' fzf-history-widget
+bindkey '\et' fzf-file-widget
